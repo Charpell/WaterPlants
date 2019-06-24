@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, Image, FlatList, StyleSheet, Modal, ScrollView } from 'react-native';
 import { Button, Block, Text } from '../components';
+import { connect } from 'react-redux';
 
 import { theme } from '../constants';
 
@@ -8,7 +9,7 @@ const { width, height } = Dimensions.get('window');
 
 
 
-export default class Welcome extends Component {
+class Welcome extends Component {
   static navigationOptions = {
     header: null,
   }
@@ -128,7 +129,8 @@ export default class Welcome extends Component {
 
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, projects } = this.props;
+    console.log('projects', projects)
 
     return (
       <Block>
@@ -187,3 +189,11 @@ const styles = StyleSheet.create({
   },
 })
  
+
+const mapStateToProps = (state) => {
+  return {
+    projects: state.project.projects
+  }
+}
+
+export default connect(mapStateToProps)(Welcome)
