@@ -6,12 +6,14 @@ import Welcome from '../screens/Welcome';
 import Login from '../screens/Login';
 import Browse from '../screens/Browse';
 import SignUp from '../screens/SignUp';
+import Forgot from '../screens/Forgot';
 
 import { theme } from '../constants';
 
 
 
 const screens = createStackNavigator({
+  Forgot,
   SignUp,
   Welcome,
   Login,
