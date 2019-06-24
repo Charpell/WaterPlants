@@ -4,6 +4,8 @@ import { AppLoading, Asset } from 'expo';
 
 import Navigation from './navigation';
 import { Block } from './components';
+console.disableYellowBox = true
+
 
 const images = [
   require('./assets/icons/back.png'),
