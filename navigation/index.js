@@ -3,13 +3,17 @@ import { Image } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import Welcome from '../screens/Welcome';
+import Login from '../screens/Login';
+import Browse from '../screens/Browse';
 
 import { theme } from '../constants';
 
 
 
 const screens = createStackNavigator({
-  Welcome
+  // Welcome,
+  Login,
+  Browse
 }, {
   defaultNavigationOptions: {
     headerStyle: {
