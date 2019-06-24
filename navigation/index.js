@@ -5,13 +5,15 @@ import { createAppContainer, createStackNavigator } from 'react-navigation';
 import Welcome from '../screens/Welcome';
 import Login from '../screens/Login';
 import Browse from '../screens/Browse';
+import SignUp from '../screens/SignUp';
 
 import { theme } from '../constants';
 
 
 
 const screens = createStackNavigator({
-  // Welcome,
+  SignUp,
+  Welcome,
   Login,
   Browse
 }, {
