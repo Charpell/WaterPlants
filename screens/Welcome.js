@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Animated, Dimensions, Image, FlatList, Modal, StyleSheet, ScrollView } from 'react-native';
+import { Animated, Dimensions, Image, FlatList, StyleSheet } from 'react-native';
 import { Button, Block, Text } from '../components';
 
 import { theme } from '../constants';
@@ -9,6 +9,10 @@ const { width, height } = Dimensions.get('window');
 
 
 export default class Welcome extends Component {
+  static navigationOptions = {
+    header: null,
+  }
+
   scrollX = new Animated.Value(0);
 
   renderIllustrations() {
@@ -74,32 +78,27 @@ export default class Welcome extends Component {
 
     return (
       <Block>
-        <Block center middle flex={0.4}>
-          <Text h1 center>
+        <Block center bottom flex={0.4}>
+          <Text h1 center bold>
             Your Home.
-            <Text h1 primary>Greener.</Text>
+            <Text h1 primary> Greener.</Text>
           </Text>
           <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
-            Enjoy the experience
+            Enjoy the experience.
           </Text>
         </Block>
-
         <Block center middle>
           {this.renderIllustrations()}
           {this.renderSteps()}
-          <Text>Render dots</Text>
         </Block>
-
         <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
           <Button gradient onPress={() => navigation.navigate('Login')}>
             <Text center semibold white>Login</Text>
           </Button>
           <Button shadow onPress={() => navigation.navigate('SignUp')}>
-            <Text center semibold>SignUp</Text>
+            <Text center semibold>Signup</Text>
           </Button>
-          <Text>Terms of service</Text>
         </Block>
-        <Text>Render terms of service</Text>
       </Block>
     )
   }
