@@ -12,9 +12,9 @@ import { theme } from '../constants';
 
 
 const screens = createStackNavigator({
-  
-  SignUp,
   Login,
+  SignUp,
+  
   Browse,
   Welcome,
   Forgot,

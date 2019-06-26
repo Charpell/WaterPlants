@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+
+import { signIn } from '../store/actions/authActions'
 
 import { Button, Block, Input, Text } from '../components';
 import { theme } from '../constants';
 
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
-    email: 'test@test.com',
+    email: 'test@net.com',
     password: '123456',
     errors: [],
     loading: false
@@ -22,15 +25,19 @@ export default class Login extends Component {
     // this.setState({ loading: true })
 
     if (!errors.length) {
+      this.props.signIn(this.state)
+
       navigation.navigate("Browse")
     }
   }
 
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, auth } = this.props;
     const { loading, errors } = this.state;
     const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
+
+    console.log('auth', auth)
 
     return (
       <KeyboardAvoidingView style={styles.login} behaviour="padding">
@@ -89,3 +96,20 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.accent,
   }
 })
+
+
+
+const mapStateToProps = (state) => {
+  return{
+    authError: state.auth.authError,
+    auth: state.firebase.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (creds) => dispatch(signIn(creds))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
