@@ -11,13 +11,13 @@ import Forgot from '../screens/Forgot';
 import { theme } from '../constants';
 
 
-
 const screens = createStackNavigator({
-  Welcome,
-  Forgot,
+  
   SignUp,
   Login,
-  Browse
+  Browse,
+  Welcome,
+  Forgot,
 }, {
   defaultNavigationOptions: {
     headerStyle: {

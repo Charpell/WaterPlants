@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get('window');
 
 
 
-class Welcome extends Component {
+export default class Welcome extends Component {
   static navigationOptions = {
     header: null,
   }
@@ -129,8 +129,7 @@ class Welcome extends Component {
 
 
   render() {
-    const { navigation, projects } = this.props;
-    console.log('projects', projects)
+    const { navigation } = this.props;
 
     return (
       <Block>
@@ -189,11 +188,3 @@ const styles = StyleSheet.create({
   },
 })
  
-
-const mapStateToProps = (state) => {
-  return {
-    projects: state.project.projects
-  }
-}
-
-export default connect(mapStateToProps)(Welcome)

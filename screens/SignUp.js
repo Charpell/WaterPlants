@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Alert, ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { connect } from 'react-redux'
 
+import { signUp } from '../store/actions/authActions'
 import { Button, Block, Input, Text } from '../components';
 import { theme } from '../constants';
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   state = {
-    email: null,
-    username: null,
-    password: null,
+    email: '',
+    username: '',
+    password: '',
     errors: [],
     loading: false,
   }
@@ -29,6 +31,7 @@ export default class SignUp extends Component {
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
+      this.props.signUp(this.state)
       Alert.alert(
         'Success!',
         'Your account has been created',
@@ -111,3 +114,19 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.accent,
   }
 })
+
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError
+  }
+}
+
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    signUp: (creds) => dispatch(signUp(creds))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

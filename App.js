@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { AppLoading, Asset } from 'expo';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './store/reducers/rootReducer';
 import { Provider } from 'react-redux';
-
-const store = createStore(rootReducer)
+import thunk from 'redux-thunk';
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import fbConfig from './config/fbConfig';
 
 
 import Navigation from './navigation';
@@ -36,6 +38,15 @@ const images = [
 ];
 
 
+const store = createStore(rootReducer,
+  compose(
+    applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
+    reactReduxFirebase(fbConfig, { userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true, enableRedirectHandling: false }), // redux binding for firebase
+    reduxFirestore(fbConfig) // redux bindings for firestore
+  )
+);
+
+
 export default class App extends Component {
   state = {
     isLoadingComplete: false,
@@ -59,12 +70,14 @@ export default class App extends Component {
       )
     }
     
-    return (
-      <Provider store={store}>
-        <Block white>
-          <Navigation />
-        </Block>
-      </Provider>
-  );
+    // store.firebaseAuthIsReady.then(() => {
+      return (
+        <Provider store={store}>
+          <Block white>
+            <Navigation />
+          </Block>
+        </Provider>
+      );
+    // })
   }
 }
