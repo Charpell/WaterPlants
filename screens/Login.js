@@ -37,7 +37,7 @@ class Login extends Component {
     const { loading, errors } = this.state;
     const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
 
-    console.log('auth', auth)
+    console.log('auth', auth.uid)
 
     return (
       <KeyboardAvoidingView style={styles.login} behaviour="padding">

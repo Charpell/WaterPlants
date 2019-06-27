@@ -1,12 +1,32 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class Browse extends Component {
+import { Button, Text } from '../components'
+import { signOut } from '../store/actions/authActions'
+
+class Browse extends Component {
+
+  logOut = () => {
+    const { navigation, signOut } = this.props;
+    signOut()
+    navigation.navigate('Login')
+  }
+
   render() {
     return (
-      <View>
-        <Text> textInComponent </Text>
-      </View>
+      <Button gradient onPress={() => this.logOut()}>
+          <Text bold white center>Login</Text>
+      </Button>
+
     )
   }
 }
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Browse)
