@@ -7,11 +7,13 @@ import Login from '../screens/Login';
 import Browse from '../screens/Browse';
 import SignUp from '../screens/SignUp';
 import Forgot from '../screens/Forgot';
+import Loading from '../screens/Loading';
 
 import { theme } from '../constants';
 
 
 const screens = createStackNavigator({
+  Loading,
   Login,
   SignUp,
   

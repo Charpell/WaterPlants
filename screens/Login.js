@@ -17,7 +17,7 @@ class Login extends Component {
   }
 
   handleLogin = () => {
-    const { navigation } = this.props;
+    const { navigation , authError} = this.props;
     const { email, password } = this.state
     const errors = []
 
@@ -26,18 +26,17 @@ class Login extends Component {
 
     if (!errors.length) {
       this.props.signIn(this.state)
-
-      navigation.navigate("Browse")
+        .then(() => {
+          navigation.replace('Browse')
+        })
     }
   }
 
 
   render() {
-    const { navigation, auth } = this.props;
+    const { navigation, authError } = this.props;
     const { loading, errors } = this.state;
     const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
-
-    console.log('auth', auth.uid)
 
     return (
       <KeyboardAvoidingView style={styles.login} behaviour="padding">

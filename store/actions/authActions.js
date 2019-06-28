@@ -3,7 +3,7 @@ export const signUp = (newUser) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
 
-    firebase.auth().createUserWithEmailAndPassword(
+    return firebase.auth().createUserWithEmailAndPassword(
       newUser.email, 
       newUser.password
     ).then(resp => {
@@ -25,7 +25,7 @@ export const signIn = (credentials) => {
   return (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase();
     
-    firebase.auth().signInWithEmailAndPassword(
+    return firebase.auth().signInWithEmailAndPassword(
       credentials.email,
       credentials.password
     ).then(() => {
@@ -42,7 +42,7 @@ export const signOut = () => {
   return (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase();
 
-    firebase.auth().signOut().then(() => {
+    return firebase.auth().signOut().then(() => {
       firebase.logout()
       dispatch({ type: 'SIGNOUT_SUCCESS' })
     });

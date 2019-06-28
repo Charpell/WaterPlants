@@ -32,18 +32,21 @@ class SignUp extends Component {
 
     if (!errors.length) {
       this.props.signUp(this.state)
-      Alert.alert(
-        'Success!',
-        'Your account has been created',
-        [
-          {
-            text: 'Continue', onPress: () => {
-              navigation.navigate('Browse')
-            }
-          }
-        ],
-        { cancelable: false }
-      )
+        .then(() => {
+          Alert.alert(
+            'Success!',
+            'Your account has been created',
+            [
+              {
+                text: 'Continue', 
+                onPress: () => {
+                  navigation.navigate('Browse')
+                }
+              }
+            ],
+            { cancelable: false }
+          )
+        })
     }
   }
 

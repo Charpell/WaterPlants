@@ -19,7 +19,6 @@ const authReducer = (state = initState, action) => {
       }
 
       case 'LOGIN_ERROR':
-      console.log('login error');
       return {
         ...state,
         authError: 'Login failed'
