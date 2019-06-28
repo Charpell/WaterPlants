@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Text } from '../components'
+import { Block, Button, Text } from '../components'
 import { signOut } from '../store/actions/authActions'
 
 import firebase from '../config/fbConfig';
@@ -51,9 +51,14 @@ class Browse extends Component {
   render() {
     console.log('state', this.state)
     return (
-      <Button gradient onPress={() => this.logOut()}>
+      <Block>
+        <Button gradient onPress={() => this.logOut()}>
           <Text bold white center>Login</Text>
-      </Button>
+        </Button>
+        <Button gradient onPress={() => this.props.navigation.navigate('MessageBoard')}>
+          <Text bold white center>Message Board</Text>
+        </Button>
+      </Block>
 
     )
   }
