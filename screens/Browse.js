@@ -15,11 +15,15 @@ class Browse extends Component {
   static navigationOptions = {
     header: null
   }
-  state = {
-    name: "",
-    email: "",
-    active: 'Products',
-    categories: []
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      active: 'Products',
+      categories: []
+    }
   }
 
   componentDidMount() {
@@ -33,20 +37,27 @@ class Browse extends Component {
         this.props.navigation.replace("Login")
       }
     })
-    this.setState({ categories: this.props.categories })
-    this.props.categories.forEach(function(obj) {
-      firebase.firestore().collection('categories').add({
-        id: obj.id,
-        name: obj.name,
-        tags: obj.tags,
-        count: obj.count,
-        image: obj.image
-      }).then(function(docRef) {
-        console.log('Document written with ID: ', docRef.id)
+    this.getData()
+  }
+
+  getData = () => {
+    const categoryRef = firebase.firestore().collection('categories')
+    this.unsubscribe = categoryRef.onSnapshot(querySnapshot => {
+      const categories = [];
+      
+      querySnapshot.forEach(doc => {
+        const { id, name, image, tags, count } = doc.data();
+        categories.push({
+          key: doc.id,
+          doc,
+          id,
+          name,
+          image,
+          tags,
+          count
+        })
       })
-      .catch(function(error) {
-        console.log('Error adding document: ', error)
-      })
+      this.setState({ categories })
     })
   }
 
@@ -59,13 +70,16 @@ class Browse extends Component {
   }
 
   handleTab = tab => {
-    const { categories } = this.props;
-    console.log('categories', categories)
+    const { categories } = this.state;
     const filtered = categories.filter(
       category => category.tags.includes(tab.toLowerCase())
     );
 
     this.setState({ active: tab, categories: filtered });
+  }
+
+  componentWillUnmount() {
+    unsubscribe()
   }
 
 
@@ -138,8 +152,7 @@ class Browse extends Component {
 }
 
 Browse.defaultProps = {
-  profile: mocks.profile,
-  categories: mocks.categories,
+  profile: mocks.profile
 }
 
 const mapStateToProps = (state) => {

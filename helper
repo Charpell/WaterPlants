@@ -1,0 +1,14 @@
+this.props.categories.forEach(function(obj) {
+      firebase.firestore().collection('categories').add({
+        id: obj.id,
+        name: obj.name,
+        tags: obj.tags,
+        count: obj.count,
+        image: obj.image
+      }).then(function(docRef) {
+        console.log('Document written with ID: ', docRef.id)
+      })
+      .catch(function(error) {
+        console.log('Error adding document: ', error)
+      })
+    })
