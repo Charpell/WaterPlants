@@ -10,6 +10,7 @@ import Forgot from '../screens/Forgot';
 import Loading from '../screens/Loading';
 import MessageBoard from '../screens/MessageBoard';
 import Explore from '../screens/Explore';
+import Product from '../screens/Product';
 
 import { theme } from '../constants';
 
@@ -23,7 +24,8 @@ const screens = createStackNavigator({
   Explore,
   Welcome,
   Forgot,
-  MessageBoard
+  MessageBoard,
+  Product
 }, {
   defaultNavigationOptions: {
     headerStyle: {
