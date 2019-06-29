@@ -143,6 +143,12 @@ class Browse extends Component {
                 </Card>
               </TouchableOpacity>
             ))}
+            <Button gradient onPress={() => this.logOut()}>
+              <Text bold white center>Logout</Text>
+            </Button>
+            <Button gradient onPress={() => this.props.navigation.navigate('MessageBoard')}>
+              <Text bold white center>Message Board</Text>
+            </Button>
           </Block>
         </ScrollView>
       </Block>

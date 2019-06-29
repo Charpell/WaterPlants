@@ -9,6 +9,7 @@ import SignUp from '../screens/SignUp';
 import Forgot from '../screens/Forgot';
 import Loading from '../screens/Loading';
 import MessageBoard from '../screens/MessageBoard';
+import Explore from '../screens/Explore';
 
 import { theme } from '../constants';
 
@@ -19,7 +20,7 @@ const screens = createStackNavigator({
   Loading,
   Login,
   SignUp,
-  
+  Explore,
   Welcome,
   Forgot,
   MessageBoard
