@@ -112,6 +112,12 @@ class Browse extends Component {
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
           <Text h1 bold>Browse</Text>
+          <Text medium secondary onPress={() => this.props.navigation.navigate('MessageBoard')}>
+            MessaageBoard
+          </Text>
+          <Text medium secondary onPress={() => this.logOut()}>
+            Logout
+          </Text>
           <Button onPress={() => navigation.navigate('Settings')}>
             <Image
               source={profile.avatar}
@@ -143,12 +149,6 @@ class Browse extends Component {
                 </Card>
               </TouchableOpacity>
             ))}
-            <Button gradient onPress={() => this.logOut()}>
-              <Text bold white center>Logout</Text>
-            </Button>
-            <Button gradient onPress={() => this.props.navigation.navigate('MessageBoard')}>
-              <Text bold white center>Message Board</Text>
-            </Button>
           </Block>
         </ScrollView>
       </Block>

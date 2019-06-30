@@ -12,11 +12,13 @@ import MessageBoard from '../screens/MessageBoard';
 import Explore from '../screens/Explore';
 import Product from '../screens/Product';
 import Settings from '../screens/Settings';
+import Upload from '../screens/Upload';
 
 import { theme } from '../constants';
 
 
 const screens = createStackNavigator({
+  Upload,
   Browse,
 
   Loading,
