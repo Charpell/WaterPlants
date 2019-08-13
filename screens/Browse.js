@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dimensions, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import { Dimensions, Image, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Block, Button, Text, Card, Badge } from '../components'
@@ -109,15 +109,15 @@ class Browse extends Component {
     const tabs = ['Products', 'Inspirations', 'Shop'];
 
     return (
-      <Block>
+      <SafeAreaView>
         <Block flex={false} row center space="between" style={styles.header}>
           <Text h1 bold>Browse</Text>
-          <Text medium secondary onPress={() => this.props.navigation.navigate('MessageBoard')}>
+          {/* <Text medium secondary onPress={() => this.props.navigation.navigate('MessageBoard')}>
             MessaageBoard
           </Text>
           <Text medium secondary onPress={() => this.logOut()}>
             Logout
-          </Text>
+          </Text> */}
           <Button onPress={() => navigation.navigate('Settings')}>
             <Image
               source={profile.avatar}
@@ -151,7 +151,7 @@ class Browse extends Component {
             ))}
           </Block>
         </ScrollView>
-      </Block>
+      </SafeAreaView>
 
     )
   }
